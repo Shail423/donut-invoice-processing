@@ -1,0 +1,26 @@
+model_name_or_path: naver-clova-ix/donut-base
+train_file: ./data/train.jsonl
+validation_file: ./data/val.jsonl
+output_dir: ./donut-invoice-model
+num_train_epochs: 10
+per_device_train_batch_size: 2  # Reduced for CPU-only training
+per_device_eval_batch_size: 2   # Reduced for CPU-only training
+learning_rate: 3e-5             # Slightly lower learning rate for stability
+weight_decay: 0.01
+warmup_steps: 200               # Reduced for smaller dataset
+max_seq_length: 512
+max_target_length: 1024         # Added to handle complex JSON outputs
+logging_dir: ./logs
+logging_steps: 50               # More frequent logging
+evaluation_strategy: steps
+eval_steps: 100                 # More frequent evaluation
+save_steps: 200                 # More frequent saving
+save_total_limit: 3             # Keep more checkpoints
+load_best_model_at_end: true
+metric_for_best_model: eval_loss
+greater_is_better: false
+gradient_accumulation_steps: 4  # Increased to compensate for smaller batch size
+fp16: false                     # Set to false for CPU-only training
+dataloader_num_workers: 2       # Limited workers for CPU
+push_to_hub: false
+report_to: none

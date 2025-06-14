@@ -1,0 +1,16 @@
+{
+  "fields": [
+    "invoice_number",
+    "date",
+    "due_date",
+    "purchase_order",
+    "currency",
+    "company",
+    "total_amount",
+    "subtotal",
+    "tax_amount",
+    "tax_rate",
+    "payment_terms",
+    "line_items"
+  ]
+}
